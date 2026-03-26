@@ -63,8 +63,13 @@ const projectsList = [
             'Civic web app that cuts through the noise of the City of Toronto\'s recreation portal. Find activities, programs and parks near you — fast.',
         tags: ['Civic Tech', 'Next.js', 'TypeScript', 'PostGIS'],
         banner: (
-            <div className="h-32 flex items-center justify-center bg-[#f0ece4] px-6">
-                <img src={findrecLogo} alt="FindRec Toronto" className="h-16 w-auto object-contain" />
+            /* Full lockup: leaf icon + "FindRec" bold serif + "Toronto" italic serif */
+            <div className="h-32 flex items-center justify-center bg-[#f0ece4] px-6 gap-3">
+                <img src={findrecLogo} alt="" className="h-14 w-auto object-contain" />
+                <div className="flex items-baseline leading-none" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+                    <span className="text-[1.6rem] font-bold text-[#2d4a2f]">FindRec</span>
+                    <span className="text-[1.6rem] italic font-normal text-[#2d4a2f]">Toronto</span>
+                </div>
             </div>
         ),
     },
@@ -106,7 +111,7 @@ const Projects = () => {
         <section id="projects" className="px-8 sm:px-12 py-12 bg-[#f5f1eb] border-t border-gray-200">
 
             <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Product Apps</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Product Portfolio</h2>
                 <a
                     href="https://github.com/RohanSartho"
                     target="_blank"
