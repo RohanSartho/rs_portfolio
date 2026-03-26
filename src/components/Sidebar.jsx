@@ -7,26 +7,30 @@
 import { useState } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { Menu, X } from 'lucide-react';
+import defaultPhoto from '../assets/profile.jpg';
 
 const navItems = [
-    { label: 'Home',     id: '#home' },
-    { label: 'About Me', id: '#about' },
-    { label: 'Projects', id: '#projects' },
-    { label: 'Contact',  id: '#contact' },
+    { label: 'Home',              id: '#home' },
+    { label: 'About Me',          id: '#about' },
+    { label: 'Product Portfolio', id: '#projects' },
+    { label: 'Contact',           id: '#contact' },
 ];
 
 const socialLinks = [
     { href: 'https://www.linkedin.com/in/rohan-sartho/', icon: <FaLinkedin className="w-5 h-5" /> },
-    { href: 'https://github.com/RohanSartho',            icon: <FaGithub className="w-5 h-5" /> },
-    { href: 'mailto:rohansartho@gmail.com',              icon: <FaEnvelope className="w-5 h-5" /> },
+    { href: 'https://github.com/RohanSartho',            icon: <FaGithub    className="w-5 h-5" /> },
+    { href: 'mailto:rohansartho@gmail.com',              icon: <FaEnvelope  className="w-5 h-5" /> },
 ];
 
 const Sidebar = ({ profileImage, resumeData }) => {
     const [active, setActive] = useState('home');
-    const [open, setOpen] = useState(false);
+    const [open, setOpen]     = useState(false);
+
+    // Use admin-uploaded photo if present, otherwise fall back to static asset
+    const photo = profileImage || defaultPhoto;
 
     const handleNav = (label, id) => {
-        setActive(label.toLowerCase().replace(' ', ''));
+        setActive(label.toLowerCase().replace(/\s+/g, ''));
         setOpen(false);
         const el = document.querySelector(id);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -37,11 +41,12 @@ const Sidebar = ({ profileImage, resumeData }) => {
 
             {/* Profile */}
             <div className="flex flex-col items-center pt-10 pb-6 px-6 border-b border-gray-100">
-                <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200 mb-4 flex items-center justify-center">
-                    {profileImage
-                        ? <img src={profileImage} alt="Rohan Sartho" className="w-full h-full object-cover" />
-                        : <i className="fas fa-user text-3xl text-gray-400 opacity-50" />
-                    }
+                <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 mb-4">
+                    <img
+                        src={photo}
+                        alt="Rohan Sartho"
+                        className="w-full h-full object-cover object-top"
+                    />
                 </div>
                 <h2 className="text-lg font-bold text-gray-900 text-center leading-tight">Rohan Sartho</h2>
                 <p className="text-xs text-gray-500 mt-1 text-center">Senior Product Manager</p>
@@ -50,7 +55,7 @@ const Sidebar = ({ profileImage, resumeData }) => {
             {/* Nav */}
             <nav className="flex-1 flex flex-col">
                 {navItems.map((item) => {
-                    const key = item.label.toLowerCase().replace(' ', '');
+                    const key = item.label.toLowerCase().replace(/\s+/g, '');
                     const isActive = active === key;
                     return (
                         <a
@@ -59,16 +64,13 @@ const Sidebar = ({ profileImage, resumeData }) => {
                             onClick={(e) => { e.preventDefault(); handleNav(item.label, item.id); }}
                             className={`
                                 relative flex items-center px-8 py-4
-                                text-sm font-medium
-                                border-b border-gray-100
-                                transition-colors
+                                text-sm font-medium border-b border-gray-100 transition-colors
                                 ${isActive
                                     ? 'text-gray-900 bg-gray-50'
                                     : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                                 }
                             `}
                         >
-                            {/* Active left-border indicator */}
                             {isActive && (
                                 <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-orange-600 rounded-r-full" />
                             )}
@@ -111,12 +113,12 @@ const Sidebar = ({ profileImage, resumeData }) => {
 
     return (
         <>
-            {/* Desktop sidebar — always visible */}
+            {/* Desktop sidebar */}
             <div className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64">
                 {panel}
             </div>
 
-            {/* Mobile hamburger button */}
+            {/* Mobile hamburger */}
             <button
                 onClick={() => setOpen(true)}
                 className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white shadow-md border border-gray-200"
@@ -124,17 +126,11 @@ const Sidebar = ({ profileImage, resumeData }) => {
                 <Menu className="w-5 h-5 text-gray-700" />
             </button>
 
-            {/* Mobile drawer overlay */}
+            {/* Mobile drawer */}
             {open && (
                 <div className="lg:hidden fixed inset-0 z-50 flex">
-                    {/* Backdrop */}
-                    <div
-                        className="absolute inset-0 bg-black/40"
-                        onClick={() => setOpen(false)}
-                    />
-                    {/* Panel */}
+                    <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
                     <div className="relative z-10 h-full w-64 shadow-xl">
-                        {/* Close button */}
                         <button
                             onClick={() => setOpen(false)}
                             className="absolute top-3 right-3 p-1.5 rounded-lg bg-gray-100"
