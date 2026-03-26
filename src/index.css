@@ -1,36 +1,25 @@
-/* 
- * Main Stylesheet - Modern Portfolio Website
- * Imports external resources, defines global styles, and custom utilities
-*/
+/* Main Stylesheet — light-only portfolio */
 
 /* Import Font Awesome for icons */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
-/* Import Google Sans font from Google Fonts */
+/* Import Google Sans font */
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
 
-/* Import Tailwind CSS framework */
+/* Tailwind CSS */
 @import "tailwindcss";
 
-/* Define custom dark mode variant for Tailwind */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* Base body styles - Apply Google Sans font globally */
+/* Base body styles */
 body {
   font-family: 'Google Sans', sans-serif;
 }
 
-/* Dark mode color scheme adjustment */
-.dark {
-  color-scheme: dark;
-}
-
-/* Smooth scrolling for better UX */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom CSS clip-path for star shape (10-point star) */
+/* Custom CSS clip-path for star shape (used in About/Contact decorative element) */
 .star-shape {
   clip-path: polygon(
     50% 0%,
