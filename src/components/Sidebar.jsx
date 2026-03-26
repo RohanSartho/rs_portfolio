@@ -1,19 +1,19 @@
 /**
  * Left Sidebar Navigation
- * Fixed panel with profile photo, nav links, and social icons.
- * Desktop: always visible. Mobile: slide-in drawer toggled by hamburger.
+ * - Active nav item tracks scroll position via IntersectionObserver
+ * - Falls back to click-driven active state on mobile
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { Menu, X } from 'lucide-react';
 import defaultPhoto from '../assets/profile.jpg';
 
 const navItems = [
-    { label: 'Home',              id: '#home' },
-    { label: 'About Me',          id: '#about' },
-    { label: 'Product Portfolio', id: '#projects' },
-    { label: 'Contact',           id: '#contact' },
+    { label: 'Home',              id: 'home' },
+    { label: 'About Me',          id: 'about' },
+    { label: 'Product Portfolio', id: 'projects' },
+    { label: 'Contact',           id: 'contact' },
 ];
 
 const socialLinks = [
@@ -26,13 +26,55 @@ const Sidebar = ({ profileImage, resumeData }) => {
     const [active, setActive] = useState('home');
     const [open, setOpen]     = useState(false);
 
-    // Use admin-uploaded photo if present, otherwise fall back to static asset
     const photo = profileImage || defaultPhoto;
 
-    const handleNav = (label, id) => {
-        setActive(label.toLowerCase().replace(/\s+/g, ''));
+    // ── Scroll-driven active state via IntersectionObserver ──────────
+    useEffect(() => {
+        const sectionIds = navItems.map((n) => n.id);
+
+        // Track how much of each section is visible
+        const visibilityMap = {};
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    visibilityMap[entry.target.id] = entry.intersectionRatio;
+                });
+
+                // Whichever observed section has the highest intersection ratio wins
+                let bestId   = null;
+                let bestRatio = -1;
+                sectionIds.forEach((id) => {
+                    const ratio = visibilityMap[id] ?? 0;
+                    if (ratio > bestRatio) {
+                        bestRatio = ratio;
+                        bestId    = id;
+                    }
+                });
+
+                if (bestId) setActive(bestId);
+            },
+            {
+                // Fire at multiple thresholds for smooth handoff between sections
+                threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0],
+                // Top offset matches nothing (full viewport), bottom crops so the
+                // section entering from below doesn't win until it's dominant.
+                rootMargin: '0px 0px -40% 0px',
+            }
+        );
+
+        sectionIds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const handleNav = (id) => {
+        setActive(id);
         setOpen(false);
-        const el = document.querySelector(id);
+        const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
@@ -41,7 +83,7 @@ const Sidebar = ({ profileImage, resumeData }) => {
 
             {/* Profile */}
             <div className="flex flex-col items-center pt-10 pb-6 px-6 border-b border-gray-100">
-                <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 mb-4">
+                <div className="w-24 h-24 rounded-full overflow-hidden mb-4 ring-2 ring-gray-100">
                     <img
                         src={photo}
                         alt="Rohan Sartho"
@@ -55,25 +97,29 @@ const Sidebar = ({ profileImage, resumeData }) => {
             {/* Nav */}
             <nav className="flex-1 flex flex-col">
                 {navItems.map((item) => {
-                    const key = item.label.toLowerCase().replace(/\s+/g, '');
-                    const isActive = active === key;
+                    const isActive = active === item.id;
                     return (
                         <a
-                            key={item.label}
-                            href={item.id}
-                            onClick={(e) => { e.preventDefault(); handleNav(item.label, item.id); }}
+                            key={item.id}
+                            href={`#${item.id}`}
+                            onClick={(e) => { e.preventDefault(); handleNav(item.id); }}
                             className={`
                                 relative flex items-center px-8 py-4
-                                text-sm font-medium border-b border-gray-100 transition-colors
+                                text-sm font-medium border-b border-gray-100 transition-colors duration-150
                                 ${isActive
                                     ? 'text-gray-900 bg-gray-50'
                                     : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                                 }
                             `}
                         >
-                            {isActive && (
-                                <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-orange-600 rounded-r-full" />
-                            )}
+                            {/* Orange left-border active indicator */}
+                            <span
+                                className={`
+                                    absolute left-0 top-0 bottom-0 w-[3px] rounded-r-full
+                                    transition-all duration-200
+                                    ${isActive ? 'bg-orange-600 opacity-100' : 'bg-transparent opacity-0'}
+                                `}
+                            />
                             {item.label}
                         </a>
                     );
