@@ -1,69 +1,87 @@
 /**
- * Product Apps Section
- * Each card is fully clickable → opens live site in a new tab.
- * Hover lifts the entire card.
+ * Product Portfolio Section
+ * Two subsections:
+ *   1. Work Product Portfolio — professional PM work from VMware & Tata
+ *   2. Personal AI-Powered Apps — independently built products
  */
 
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import findrecLogo from '../assets/findrec_logo.png';
 
-/* ─── Inline SVG logos ───────────────────────────────────────────── */
+/* ─── Inline SVG logos (personal apps) ──────────────────────────── */
 
 const PrepEdgeLogo = () => (
     <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-        {/* Purple rounded-square background */}
         <rect width="80" height="80" rx="20" fill="#7C3AED" />
-        {/* White speech-bubble body */}
         <rect x="14" y="11" width="52" height="42" rx="9" fill="white" />
-        {/* Bubble tail pointing down */}
         <path d="M30 53 L40 65 L50 53 Z" fill="white" />
-        {/* Purple checkmark */}
-        <path
-            d="M26 33 L35.5 43 L54 24"
-            stroke="#7C3AED"
-            strokeWidth="5.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        />
+        <path d="M26 33 L35.5 43 L54 24" stroke="#7C3AED" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
 
-/* Wordle-style letter tiles with tricolore palette */
 const WordleLogo = () => (
     <svg viewBox="0 0 160 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-40 h-14">
-        {/* W */}
         <rect x="0"   y="4" width="28" height="28" rx="5" fill="#002395" />
         <text x="14"  y="23" textAnchor="middle" fill="white" fontSize="18" fontWeight="700" fontFamily="sans-serif">W</text>
-        {/* O */}
         <rect x="33"  y="4" width="28" height="28" rx="5" fill="#4B5563" />
         <text x="47"  y="23" textAnchor="middle" fill="white" fontSize="18" fontWeight="700" fontFamily="sans-serif">O</text>
-        {/* R */}
         <rect x="66"  y="4" width="28" height="28" rx="5" fill="#ED4245" />
         <text x="80"  y="23" textAnchor="middle" fill="white" fontSize="18" fontWeight="700" fontFamily="sans-serif">R</text>
-        {/* D */}
         <rect x="99"  y="4" width="28" height="28" rx="5" fill="#002395" />
         <text x="113" y="23" textAnchor="middle" fill="white" fontSize="18" fontWeight="700" fontFamily="sans-serif">D</text>
-        {/* L */}
         <rect x="132" y="4" width="28" height="28" rx="5" fill="#6aaa64" />
         <text x="146" y="23" textAnchor="middle" fill="white" fontSize="18" fontWeight="700" fontFamily="sans-serif">L</text>
-        {/* "en français" label */}
         <text x="80" y="50" textAnchor="middle" fill="#6B7280" fontSize="10" fontFamily="sans-serif" fontStyle="italic">en français</text>
     </svg>
 );
 
-/* ─── Project data ───────────────────────────────────────────────── */
+/* ─── Work product portfolio ─────────────────────────────────────── */
 
-const projectsList = [
+const workProducts = [
     {
-        id: 1,
+        id: 'w1',
+        company: 'VMware (Omnissa)',
+        title: 'Mobile Endpoint Management SDK',
+        description:
+            'Led AI/ML roadmap for enterprise mobile SDK, building a predictive analytics platform processing 5M+ daily data points and unified telemetry dashboards that improved IT visibility by 90%.',
+        tags: ['AI/ML', 'Enterprise SDK', 'Telemetry', 'B2B SaaS'],
+        metrics: ['10M+ MAU', '$5M ARR', '5M+ daily events'],
+        color: '#0F4C81', // VMware blue
+    },
+    {
+        id: 'w2',
+        company: 'VMware (Omnissa)',
+        title: 'Shift-Based Access SDK',
+        description:
+            'Designed and shipped identity management SDK for frontline workers, automating shift-based access for 150K Walmart employees and generating $2M in new revenue across retail, healthcare, and warehousing.',
+        tags: ['Identity Management', 'Frontline Workers', 'Auth0 / OKTA', 'GTM'],
+        metrics: ['$20M cost savings', '$2M new revenue', '150K workers'],
+        color: '#0F4C81',
+    },
+    {
+        id: 'w3',
+        company: 'Tata Communications',
+        title: 'ML-Powered CNAPP Cloud Security',
+        description:
+            'Developed AI roadmap for cloud-native application protection platform. Launched UEBA anomaly detection achieving 92% accuracy and 75% false-positive reduction; drove 50% remediation improvement.',
+        tags: ['AI/ML', 'Cloud Security', 'UEBA', 'Zero Trust'],
+        metrics: ['92% ML accuracy', '75% false-positive reduction', '$1.2M ARR'],
+        color: '#C1121F', // Tata red
+    },
+];
+
+/* ─── Personal AI-powered apps ───────────────────────────────────── */
+
+const personalProjects = [
+    {
+        id: 'p1',
         title: 'FindRec Toronto',
         url: 'https://findrectoronto.vercel.app/',
         github: null,
         description:
-            'Civic web app that cuts through the noise of the City of Toronto\'s recreation portal. Find activities, programs and parks near you — fast.',
+            'Civic web app that cuts through the noise of the City of Toronto\'s recreation portal. Find activities, programs and parks near you, fast.',
         tags: ['Civic Tech', 'Next.js', 'TypeScript', 'PostGIS'],
         banner: (
-            /* Full lockup: leaf icon + "FindRec" bold serif + "Toronto" italic serif */
             <div className="h-32 flex items-center justify-center bg-[#f0ece4] px-6 gap-3">
                 <img src={findrecLogo} alt="" className="h-14 w-auto object-contain" />
                 <div className="flex items-baseline leading-none" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
@@ -74,7 +92,7 @@ const projectsList = [
         ),
     },
     {
-        id: 2,
+        id: 'p2',
         title: 'French Wordle',
         url: null,
         github: 'https://github.com/RohanSartho',
@@ -88,7 +106,7 @@ const projectsList = [
         ),
     },
     {
-        id: 3,
+        id: 'p3',
         title: 'PrepEdge',
         url: 'https://getprepedge.vercel.app/',
         github: null,
@@ -104,13 +122,172 @@ const projectsList = [
     },
 ];
 
-/* ─── Component ─────────────────────────────────────────────────── */
+/* ─── Patent card ────────────────────────────────────────────────── */
+
+/* SVG thumbnail: shield + URL bar + risk score gauge */
+const PatentThumbnail = () => (
+    <svg viewBox="0 0 480 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        {/* Background */}
+        <rect width="480" height="160" fill="#0f172a" />
+        {/* Subtle grid */}
+        {[...Array(8)].map((_, i) => (
+            <line key={`v${i}`} x1={60 * i} y1="0" x2={60 * i} y2="160" stroke="#1e293b" strokeWidth="1" />
+        ))}
+        {[...Array(5)].map((_, i) => (
+            <line key={`h${i}`} x1="0" y1={40 * i} x2="480" y2={40 * i} stroke="#1e293b" strokeWidth="1" />
+        ))}
+
+        {/* Left: Shield */}
+        <path d="M60 30 L60 30 C60 30 40 38 40 55 L40 85 C40 100 60 112 60 112 C60 112 80 100 80 85 L80 55 C80 38 60 30 60 30Z"
+            fill="#ea580c" opacity="0.2" />
+        <path d="M60 30 L60 30 C60 30 40 38 40 55 L40 85 C40 100 60 112 60 112 C60 112 80 100 80 85 L80 55 C80 38 60 30 60 30Z"
+            stroke="#ea580c" strokeWidth="2" fill="none" />
+        <path d="M51 68 L57 74 L70 61" stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+
+        {/* Center: URL pattern box */}
+        <rect x="110" y="35" width="240" height="28" rx="6" fill="#1e293b" />
+        <text x="122" y="54" fill="#64748b" fontSize="11" fontFamily="monospace">https://</text>
+        <text x="170" y="54" fill="#e2e8f0" fontSize="11" fontFamily="monospace">suspicious-domain.xyz/payload</text>
+
+        {/* Pattern match highlight */}
+        <rect x="110" y="75" width="240" height="20" rx="5" fill="#0f172a" />
+        <rect x="110" y="75" width="78" height="20" rx="5" fill="#ea580c" opacity="0.18" />
+        <text x="118" y="89" fill="#ea580c" fontSize="9" fontFamily="monospace" fontWeight="600">PATTERN MATCH</text>
+        <text x="196" y="89" fill="#64748b" fontSize="9" fontFamily="monospace">· anomaly score computed</text>
+
+        {/* Right: Risk gauge */}
+        <text x="386" y="50" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="sans-serif" fontWeight="600">RISK SCORE</text>
+        {/* Gauge arc background */}
+        <path d="M 346 105 A 40 40 0 0 1 426 105" stroke="#1e293b" strokeWidth="10" fill="none" strokeLinecap="round" />
+        {/* Gauge arc fill — ~75% = high risk */}
+        <path d="M 346 105 A 40 40 0 0 1 420 75" stroke="#ea580c" strokeWidth="10" fill="none" strokeLinecap="round" />
+        <text x="386" y="108" textAnchor="middle" fill="#ea580c" fontSize="18" fontFamily="sans-serif" fontWeight="700">87</text>
+        <text x="386" y="122" textAnchor="middle" fill="#94a3b8" fontSize="8" fontFamily="sans-serif">HIGH RISK</text>
+
+        {/* Patent badge bottom-left */}
+        <rect x="110" y="108" width="90" height="18" rx="4" fill="#ea580c" opacity="0.15" />
+        <text x="155" y="121" textAnchor="middle" fill="#ea580c" fontSize="9" fontFamily="sans-serif" fontWeight="700">US12267360B2</text>
+    </svg>
+);
+
+const PatentCard = () => (
+    <a
+        href="https://patents.justia.com/patent/20230396649"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex flex-col sm:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm
+                   hover:shadow-xl hover:-translate-y-1 transition-all duration-200 max-w-3xl"
+    >
+        {/* Thumbnail */}
+        <div className="sm:w-72 h-40 sm:h-auto shrink-0 overflow-hidden">
+            <PatentThumbnail />
+        </div>
+
+        {/* Content */}
+        <div className="p-5 flex flex-col justify-between flex-1">
+            <div>
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="bg-orange-50 text-orange-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                        US Patent Granted
+                    </span>
+                    <span className="text-xs text-gray-400 font-mono">US12267360B2</span>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 leading-snug mb-2 group-hover:text-orange-700 transition-colors">
+                    URL Pattern-Based Risk Scoring & Anomaly Detection for Managed Browser Security
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                    A system that dynamically analyzes URL patterns within enterprise managed browsers to compute
+                    real-time risk scores and flag anomalous access behavior, enabling security teams to intercept
+                    threats before data exfiltration occurs. Granted at VMware.
+                </p>
+            </div>
+            <div className="flex items-center gap-2 mt-4">
+                <span className="bg-gray-100 text-gray-600 text-xs px-2.5 py-0.5 rounded-full font-medium">Security</span>
+                <span className="bg-gray-100 text-gray-600 text-xs px-2.5 py-0.5 rounded-full font-medium">AI/ML</span>
+                <span className="bg-gray-100 text-gray-600 text-xs px-2.5 py-0.5 rounded-full font-medium">Browser</span>
+                <span className="ml-auto text-xs text-gray-400 group-hover:text-orange-600 transition-colors flex items-center gap-1">
+                    View on Justia <FaExternalLinkAlt className="text-[10px]" />
+                </span>
+            </div>
+        </div>
+    </a>
+);
+
+/* ─── Sub-components ─────────────────────────────────────────────── */
+
+/* Work card — non-clickable showcase with metrics row */
+const WorkCard = ({ product }) => (
+    <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col">
+        {/* Colored header band */}
+        <div
+            className="h-2 w-full"
+            style={{ backgroundColor: product.color }}
+        />
+        <div className="p-5 flex flex-col flex-1">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">{product.company}</p>
+            <h3 className="text-base font-bold text-gray-900 leading-tight mb-2">{product.title}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed mb-3 flex-1">{product.description}</p>
+
+            {/* Metrics */}
+            <div className="flex flex-wrap gap-1.5 mb-3">
+                {product.metrics.map((m) => (
+                    <span key={m} className="bg-gray-100 text-gray-700 px-2.5 py-0.5 text-xs rounded-full font-semibold">
+                        {m}
+                    </span>
+                ))}
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5">
+                {product.tags.map((tag) => (
+                    <span key={tag} className="bg-orange-50 text-orange-700 px-2.5 py-0.5 text-xs rounded-full font-medium">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </div>
+);
+
+/* Personal app card — fully clickable */
+const PersonalCard = ({ project }) => {
+    const href = project.url || project.github;
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm
+                       hover:shadow-xl hover:-translate-y-1.5 transition-all duration-200
+                       flex flex-col cursor-pointer"
+        >
+            {project.banner}
+            <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="text-base font-bold text-gray-900 leading-tight">{project.title}</h3>
+                    <FaExternalLinkAlt className="text-gray-300 group-hover:text-orange-500 transition-colors mt-0.5 shrink-0 text-xs" />
+                </div>
+                <p className="text-sm text-gray-600 mb-3 leading-relaxed flex-1">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                        <span key={tag} className="bg-orange-50 text-orange-700 px-2.5 py-0.5 text-xs rounded-full font-medium">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </a>
+    );
+};
+
+/* ─── Section ────────────────────────────────────────────────────── */
 
 const Projects = () => {
     return (
         <section id="projects" className="px-8 sm:px-12 py-12 bg-[#f5f1eb] border-t border-gray-200">
 
-            <div className="flex items-center justify-between mb-6">
+            {/* Section header */}
+            <div className="flex items-center justify-between mb-10">
                 <h2 className="text-2xl font-bold text-gray-900">Product Portfolio</h2>
                 <a
                     href="https://github.com/RohanSartho"
@@ -123,45 +300,32 @@ const Projects = () => {
                 </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {projectsList.map((project) => {
-                    const href = project.url || project.github;
-                    return (
-                        <a
-                            key={project.id}
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm
-                                       hover:shadow-xl hover:-translate-y-1.5 transition-all duration-200
-                                       flex flex-col cursor-pointer"
-                        >
-                            {/* Banner / Logo area */}
-                            {project.banner}
+            {/* ── 1. Work Product Portfolio ── */}
+            <div className="mb-12">
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                    Work Product Portfolio
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {workProducts.map((p) => <WorkCard key={p.id} product={p} />)}
+                </div>
+            </div>
 
-                            <div className="p-5 flex flex-col flex-1">
-                                {/* Title + external-link icon */}
-                                <div className="flex items-start justify-between gap-2 mb-2">
-                                    <h3 className="text-base font-bold text-gray-900 leading-tight">{project.title}</h3>
-                                    <FaExternalLinkAlt className="text-gray-300 group-hover:text-orange-500 transition-colors mt-0.5 shrink-0 text-xs" />
-                                </div>
+            {/* ── 2. Personal AI-Powered Apps ── */}
+            <div className="mb-12">
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                    Personal AI-Powered Apps
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {personalProjects.map((p) => <PersonalCard key={p.id} project={p} />)}
+                </div>
+            </div>
 
-                                <p className="text-sm text-gray-600 mb-3 leading-relaxed flex-1">{project.description}</p>
-
-                                <div className="flex flex-wrap gap-1.5">
-                                    {project.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="bg-orange-50 text-orange-700 px-2.5 py-0.5 text-xs rounded-full font-medium"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </a>
-                    );
-                })}
+            {/* ── 3. Patents ── */}
+            <div>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                    Patents
+                </h3>
+                <PatentCard />
             </div>
 
         </section>

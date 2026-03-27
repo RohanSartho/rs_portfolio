@@ -87,7 +87,7 @@ const Sidebar = ({ profileImage, resumeData }) => {
                     <img
                         src={photo}
                         alt="Rohan Sartho"
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover object-top scale-125"
                     />
                 </div>
                 <h2 className="text-lg font-bold text-gray-900 text-center leading-tight">Rohan Sartho</h2>

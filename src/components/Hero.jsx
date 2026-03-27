@@ -1,5 +1,10 @@
 /**
- * Hero Section — compact intro, no profile photo (shown in sidebar)
+ * Hero Section
+ * Layout:
+ *   - H1 constrained to max-w-3xl
+ *   - Bio (left, max-w-2xl) + stat chips pushed to right edge (full-width row)
+ *   - CTAs below
+ *   - Single info row: Based in | Open to (Full-time + Contract)
  */
 
 import { PrimaryButton } from './ui';
@@ -8,61 +13,107 @@ const Hero = ({ resumeData }) => {
     return (
         <section id="home" className="px-8 sm:px-12 pt-16 pb-12 bg-[#f5f1eb]">
 
-            {/* Greeting */}
-            <div className="max-w-3xl">
-                <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                    Hey, I'm Rohan Sartho.
-                </h1>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl">
-                    Senior Product Manager specializing in B2B SaaS. I drive product strategy through
-                    data-informed decisions, cross-functional collaboration, and a relentless focus on
-                    customer outcomes.
+            {/* H1 */}
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-3xl">
+                Hey, I'm Rohan Sartho.
+            </h1>
+
+            {/* Bio + stat chips — full width so chips reach the right edge */}
+            <div className="flex flex-col sm:flex-row gap-6 items-start mb-8 w-full">
+
+                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl flex-1">
+                    I'm an Engineer-turned-Senior PM with 12+ years shipping SaaS products that operate
+                    at scale: 10M+ MAU, 5M+ daily data points, $20M in cost savings for big retail.
+                    I've built telemetry platforms, ML-powered anomaly detection, geospatial routing
+                    systems, and mobile SDKs used by global enterprises. My engineering roots mean I
+                    write API specs, debate system trade-offs, and ship, not just roadmap. I'm drawn to
+                    products where operational intelligence meets real-world impact: courier dispatch,
+                    scheduling, forecasting, and workforce platforms where the algorithm actually matters.
                 </p>
 
-                {/* CTAs */}
-                <div className="flex flex-wrap gap-3 mb-10">
-                    {resumeData && (
-                        <a href={resumeData} download="Rohan_Sartho_Resume.pdf">
-                            <PrimaryButton>
-                                <i className="fas fa-download mr-2 text-sm" />
-                                Download CV
-                            </PrimaryButton>
-                        </a>
-                    )}
-                    <a href="#contact">
-                        <PrimaryButton>
-                            <i className="fas fa-envelope mr-2 text-sm" />
-                            Contact Me
-                        </PrimaryButton>
+                {/* Chips — ml-auto pushes them to the far right */}
+                <div className="flex sm:flex-col gap-3 shrink-0 sm:ml-auto">
+
+                    {/* 12+ Years */}
+                    <div className="bg-white border border-gray-200 rounded-2xl px-5 py-4 shadow-sm flex items-center gap-3 min-w-[160px]">
+                        <div className="text-2xl font-bold text-orange-600 leading-none">12+</div>
+                        <div className="text-sm text-gray-500 leading-tight font-medium">Years in<br />Product</div>
+                    </div>
+
+                    {/* US Patent — clickable */}
+                    <a
+                        href="https://patents.justia.com/patent/20230396649"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group bg-white border border-gray-200 rounded-2xl px-5 py-4 shadow-sm flex items-center gap-3 min-w-[160px]
+                                   hover:border-orange-300 hover:shadow-md transition-all duration-200"
+                    >
+                        <svg viewBox="0 0 36 36" fill="none" className="w-8 h-8 shrink-0">
+                            <rect width="36" height="36" rx="10" fill="#fff7ed" />
+                            <rect x="8" y="7" width="20" height="16" rx="3" fill="#ea580c" opacity="0.15" />
+                            <rect x="8" y="7" width="20" height="16" rx="3" stroke="#ea580c" strokeWidth="1.5" fill="none" />
+                            <line x1="12" y1="12" x2="24" y2="12" stroke="#ea580c" strokeWidth="1.5" strokeLinecap="round" />
+                            <line x1="12" y1="15.5" x2="24" y2="15.5" stroke="#ea580c" strokeWidth="1.5" strokeLinecap="round" />
+                            <line x1="12" y1="19" x2="19" y2="19" stroke="#ea580c" strokeWidth="1.5" strokeLinecap="round" />
+                            <circle cx="18" cy="29" r="4.5" fill="#ea580c" opacity="0.15" />
+                            <circle cx="18" cy="29" r="4.5" stroke="#ea580c" strokeWidth="1.5" />
+                            <line x1="15.5" y1="23" x2="14" y2="25" stroke="#ea580c" strokeWidth="1.5" strokeLinecap="round" />
+                            <line x1="20.5" y1="23" x2="22" y2="25" stroke="#ea580c" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                        <div>
+                            <div className="text-sm font-bold text-gray-900 leading-tight group-hover:text-orange-700 transition-colors">
+                                US Patent
+                            </div>
+                            <div className="text-sm text-gray-400 leading-tight mt-0.5">Granted · View ↗</div>
+                        </div>
                     </a>
-                    <a href="mailto:rohansartho@gmail.com" target="_blank" rel="noopener noreferrer">
-                        <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold border-2 border-orange-700 text-gray-800 hover:bg-orange-700 hover:text-white transition-colors duration-200">
-                            Hire Me
-                        </button>
-                    </a>
+
                 </div>
             </div>
 
-            {/* Quick info rows — Zevi-style inline badges */}
-            <div className="flex flex-col gap-4 max-w-xl">
-                <div className="flex items-center gap-3 text-gray-600 text-sm">
-                    <span className="font-medium text-gray-800 w-40">Currently working at</span>
-                    <span className="px-3 py-1.5 bg-white rounded-lg shadow-sm border border-gray-200 text-xs font-semibold text-gray-700">
-                        Various B2B SaaS
-                    </span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-600 text-sm">
-                    <span className="font-medium text-gray-800 w-40">Based in</span>
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3 mb-10">
+                {resumeData && (
+                    <a href={resumeData} download="Rohan_Sartho_Resume.pdf">
+                        <PrimaryButton>
+                            <i className="fas fa-download mr-2 text-sm" />
+                            Download CV
+                        </PrimaryButton>
+                    </a>
+                )}
+                <a href="#contact">
+                    <PrimaryButton>
+                        <i className="fas fa-envelope mr-2 text-sm" />
+                        Contact Me
+                    </PrimaryButton>
+                </a>
+                <a href="mailto:rohansartho@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold border-2 border-orange-700 text-gray-800 hover:bg-orange-700 hover:text-white transition-colors duration-200">
+                        Hire Me
+                    </button>
+                </a>
+            </div>
+
+            {/* Info row — Based in + Open to on same line */}
+            <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+
+                <div className="flex items-center gap-3">
+                    <span className="font-medium text-gray-800">Based in</span>
                     <span className="px-3 py-1.5 bg-white rounded-lg shadow-sm border border-gray-200 text-xs font-semibold text-gray-700">
                         Toronto, Canada
                     </span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-600 text-sm">
-                    <span className="font-medium text-gray-800 w-40">Open to</span>
+
+                <div className="flex items-center gap-3">
+                    <span className="font-medium text-gray-800">Open to</span>
                     <span className="px-3 py-1.5 bg-white rounded-lg shadow-sm border border-gray-200 text-xs font-semibold text-gray-700">
-                        Full-time PM roles
+                        Full-time
+                    </span>
+                    <span className="px-3 py-1.5 bg-white rounded-lg shadow-sm border border-gray-200 text-xs font-semibold text-gray-700">
+                        Contract
                     </span>
                 </div>
+
             </div>
 
         </section>
