@@ -61,9 +61,9 @@ const workProducts = [
     {
         id: 'w3',
         company: 'VMware (Omnissa)',
-        title: 'Workspace ONE UEM — Unified Endpoint Management',
+        title: 'Workspace ONE UEM: Unified Endpoint Management',
         description:
-            'Managing thousands of devices across locations, OS types, and ownership models is complexity most IT teams dread. As PM, I owned the platform layer that made it invisible: one console to enroll, secure, and monitor every endpoint, corporate or BYOD. The real challenge was trust — every device connecting to a hospital network, retail POS, or banking app had to prove compliance before access was granted. Zero Trust at scale, enforced across 26,000+ enterprise customers globally.',
+            'Managing thousands of devices across locations, OS types, and ownership models is complexity most IT teams dread. As PM, I owned the platform layer that made it invisible: one console to enroll, secure, and monitor every endpoint, corporate or BYOD. The real challenge was trust. Every device connecting to a hospital network, retail POS, or banking app had to prove compliance before access was granted. Zero Trust at scale, enforced across 26,000+ enterprise customers globally.',
         tags: ['UEM', 'Zero Trust', 'BYOD', 'Enterprise Platform'],
         metrics: ['26,000+ enterprise customers', 'Corporate + BYOD', 'Cross-OS'],
         color: '#0F4C81',
@@ -73,7 +73,7 @@ const workProducts = [
         company: 'Tata Communications',
         title: 'Cloud Security & Behavioural Threat Detection',
         description:
-            'Owned the product roadmap for a cloud-native application protection platform serving banking, healthcare, and financial services — where a missed threat is not a metric problem, it is a breach headline. The core challenge was signal-to-noise: security teams drowning in alerts while real threats slipped through. Led delivery of a behavioural anomaly detection engine (UEBA) that learned baseline patterns per user, per workload, per environment, firing only when it mattered. Result: 92% detection accuracy, 75% fewer false positives, and remediation time cut in half.',
+            'Owned the product roadmap for a cloud-native application protection platform serving banking, healthcare, and financial services. A missed threat here is not a metric problem; it is a breach headline. The core challenge was signal-to-noise: security teams drowning in alerts while real threats slipped through. Led delivery of a behavioural anomaly detection engine (UEBA) that learned baseline patterns per user, per workload, per environment, firing only when it mattered. Result: 92% detection accuracy, 75% fewer false positives, and remediation time cut in half.',
         tags: ['UEBA', 'Cloud Security', 'AI/ML', 'CNAPP'],
         metrics: ['92% detection accuracy', '75% fewer false positives', '50% faster remediation'],
         color: '#C1121F',
