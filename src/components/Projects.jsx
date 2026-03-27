@@ -41,32 +41,42 @@ const workProducts = [
     {
         id: 'w1',
         company: 'VMware (Omnissa)',
-        title: 'Mobile Endpoint Management SDK',
+        title: 'Digital Employee Experience Platform & Mobile SDK',
         description:
-            'Led AI/ML roadmap for enterprise mobile SDK, building a predictive analytics platform processing 5M+ daily data points and unified telemetry dashboards that improved IT visibility by 90%.',
-        tags: ['AI/ML', 'Enterprise SDK', 'Telemetry', 'B2B SaaS'],
-        metrics: ['10M+ MAU', '$5M ARR', '5M+ daily events'],
-        color: '#0F4C81', // VMware blue
+            'Built the security and telemetry SDK powering Workspace ONE on 10M+ MAU across iOS and Android, enabling enterprise IT teams to enforce Zero Trust policies, detect device compromise, and surface endpoint health signals across retail, healthcare, and financial services. Shipped a unified DEX dashboard that collapsed fragmented device signals into a single-pane IT view, cutting support escalations and improving endpoint visibility by 90%.',
+        tags: ['Zero Trust', 'Mobile SDK', 'Telemetry', 'iOS & Android'],
+        metrics: ['10M+ MAU', '$5M ARR', '90% visibility improvement'],
+        color: '#0F4C81',
     },
     {
         id: 'w2',
         company: 'VMware (Omnissa)',
-        title: 'Shift-Based Access SDK',
+        title: 'Shift-Based Access & Identity',
         description:
-            'Designed and shipped identity management SDK for frontline workers, automating shift-based access for 150K Walmart employees and generating $2M in new revenue across retail, healthcare, and warehousing.',
-        tags: ['Identity Management', 'Frontline Workers', 'Auth0 / OKTA', 'GTM'],
-        metrics: ['$20M cost savings', '$2M new revenue', '150K workers'],
+            'Designed and shipped a Zero Trust identity product for frontline workers: automating shift-timed conditional access, role-based app provisioning, and credential lifecycle management across 250,000+ workforce at enterprise customers in retail, healthcare, and hospitality. Eliminated unauthorised access by 98% and generated $2M in new revenue by solving the "shared device, rotating workforce" identity problem that MDM alone could not crack.',
+        tags: ['Zero Trust', 'Identity Management', 'Frontline Workers', 'Auth0 / OKTA'],
+        metrics: ['250K+ workers', '$2M new revenue', '98% unauthorised access eliminated'],
         color: '#0F4C81',
     },
     {
         id: 'w3',
-        company: 'Tata Communications',
-        title: 'ML-Powered CNAPP Cloud Security',
+        company: 'VMware (Omnissa)',
+        title: 'Workspace ONE UEM — Unified Endpoint Management',
         description:
-            'Developed AI roadmap for cloud-native application protection platform. Launched UEBA anomaly detection achieving 92% accuracy and 75% false-positive reduction; drove 50% remediation improvement.',
-        tags: ['AI/ML', 'Cloud Security', 'UEBA', 'Zero Trust'],
-        metrics: ['92% ML accuracy', '75% false-positive reduction', '$1.2M ARR'],
-        color: '#C1121F', // Tata red
+            'Managing thousands of devices across locations, OS types, and ownership models is complexity most IT teams dread. As PM, I owned the platform layer that made it invisible: one console to enroll, secure, and monitor every endpoint, corporate or BYOD. The real challenge was trust — every device connecting to a hospital network, retail POS, or banking app had to prove compliance before access was granted. Zero Trust at scale, enforced across 26,000+ enterprise customers globally.',
+        tags: ['UEM', 'Zero Trust', 'BYOD', 'Enterprise Platform'],
+        metrics: ['26,000+ enterprise customers', 'Corporate + BYOD', 'Cross-OS'],
+        color: '#0F4C81',
+    },
+    {
+        id: 'w4',
+        company: 'Tata Communications',
+        title: 'Cloud Security & Behavioural Threat Detection',
+        description:
+            'Owned the product roadmap for a cloud-native application protection platform serving banking, healthcare, and financial services — where a missed threat is not a metric problem, it is a breach headline. The core challenge was signal-to-noise: security teams drowning in alerts while real threats slipped through. Led delivery of a behavioural anomaly detection engine (UEBA) that learned baseline patterns per user, per workload, per environment, firing only when it mattered. Result: 92% detection accuracy, 75% fewer false positives, and remediation time cut in half.',
+        tags: ['UEBA', 'Cloud Security', 'AI/ML', 'CNAPP'],
+        metrics: ['92% detection accuracy', '75% fewer false positives', '50% faster remediation'],
+        color: '#C1121F',
     },
 ];
 
@@ -287,17 +297,8 @@ const Projects = () => {
         <section id="projects" className="px-8 sm:px-12 py-12 bg-[#f5f1eb] border-t border-gray-200">
 
             {/* Section header */}
-            <div className="flex items-center justify-between mb-10">
+            <div className="mb-10">
                 <h2 className="text-2xl font-bold text-gray-900">Product Portfolio</h2>
-                <a
-                    href="https://github.com/RohanSartho"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-orange-700 transition-colors"
-                >
-                    <FaGithub />
-                    View all on GitHub
-                </a>
             </div>
 
             {/* ── 1. Work Product Portfolio ── */}
@@ -305,16 +306,27 @@ const Projects = () => {
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
                     Work Product Portfolio
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {workProducts.map((p) => <WorkCard key={p.id} product={p} />)}
                 </div>
             </div>
 
             {/* ── 2. Personal AI-Powered Apps ── */}
             <div className="mb-12">
-                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
-                    Personal AI-Powered Apps
-                </h3>
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest">
+                        Personal AI-Powered Apps
+                    </h3>
+                    <a
+                        href="https://github.com/RohanSartho"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-orange-700 transition-colors"
+                    >
+                        <FaGithub />
+                        View all on GitHub
+                    </a>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {personalProjects.map((p) => <PersonalCard key={p.id} project={p} />)}
                 </div>

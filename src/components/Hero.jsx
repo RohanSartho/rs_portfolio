@@ -19,16 +19,18 @@ const Hero = ({ resumeData }) => {
             </h1>
 
             {/* Bio + stat chips — full width so chips reach the right edge */}
-            <div className="flex flex-col sm:flex-row gap-6 items-start mb-8 w-full">
+            <div className="flex flex-col sm:flex-row gap-8 items-start mb-8 w-full">
 
-                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl flex-1">
-                    I'm an Engineer-turned-Senior PM with 12+ years shipping SaaS products that operate
-                    at scale: 10M+ MAU, 5M+ daily data points, $20M in cost savings for big retail.
-                    I've built telemetry platforms, ML-powered anomaly detection, geospatial routing
-                    systems, and mobile SDKs used by global enterprises. My engineering roots mean I
-                    write API specs, debate system trade-offs, and ship, not just roadmap. I'm drawn to
-                    products where operational intelligence meets real-world impact: courier dispatch,
-                    scheduling, forecasting, and workforce platforms where the algorithm actually matters.
+                <p className="text-lg text-gray-600 leading-relaxed flex-1 text-justify" style={{ wordSpacing: 'normal', overflowWrap: 'break-word' }}>
+                    Engineer-turned-PM with 12+ years shipping SaaS products across retail, healthcare,
+                    financial services, and cloud security. I've led delivery of ML-powered anomaly
+                    detection, geospatial routing systems, predictive analytics platforms, and mobile
+                    SDKs that operate at scale: 10M+ MAU and operational savings across 250,000+
+                    frontline workers. My engineering roots mean I prototype alongside engineers, write
+                    API specs, and make trade-off calls rooted in system constraints, not just
+                    stakeholder sentiment. I'm drawn to products where operational intelligence
+                    compounds: courier dispatch, workforce scheduling, forecasting systems, and platforms
+                    where the algorithm directly shapes someone's livelihood. I am a US Patent holder.
                 </p>
 
                 {/* Chips — ml-auto pushes them to the far right */}
