@@ -11,7 +11,7 @@ import defaultPhoto from '../assets/profile.jpg';
 
 const navItems = [
     { label: 'Home',              id: 'home' },
-    { label: 'What I Do',         id: 'about' },
+    { label: 'About Me',          id: 'about' },
     { label: 'Product Portfolio', id: 'projects' },
     { label: 'Contact',           id: 'contact' },
 ];
