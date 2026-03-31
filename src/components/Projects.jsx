@@ -107,7 +107,7 @@ const personalProjects = [
         url: 'https://lemotjuste.vercel.app/',
         github: 'https://github.com/RohanSartho/le-mot-juste',
         description:
-            '🇫🇷 "The Right Word" — A real-time multiplayer French vocabulary game built around charades. One player describes a French word using only sentences (no gestures, no translations); while everyone else shouts their guess. First to get it right wins the round. Built for French learners and Francophiles — whether learning Parisian French 🇫🇷 or Québécois.',
+            '🇫🇷 Real-time multiplayer French game. Describe a word in sentences (no gestures, no translations) while others guess. Built for French learners and Francophiles.',
         tags: ['Multiplayer Game', 'French', 'Real-Time'],
         banner: (
             <div className="h-32 flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-blue-50 px-6">
